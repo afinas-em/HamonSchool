@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
                 name="viewmodel"
-                type="com.test.hamonschool.MainViewModel"/>
+                type="com.test.hamonschool.MainViewModel" />
     </data>
+
     <androidx.drawerlayout.widget.DrawerLayout
+            android:id="@+id/lytDrawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".MainActivity">
@@ -17,52 +21,53 @@
                 android:layout_height="match_parent">
 
             <LinearLayout
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
                     android:id="@+id/lytTitle"
-                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
                     android:background="@color/colorPrimary"
                     android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize">
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp">
 
                 <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_menu"/>
+                        android:onClick="@{() -> viewmodel.openDrawer(lytDrawer)}"
+                        android:src="@drawable/ic_menu" />
 
                 <TextView
-                        android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Hamon School"
-                        android:onClick="@{}"
-                        android:gravity="start"
-                        android:textSize="18sp"
                         android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:gravity="start"
+                        android:text="@{viewmodel.pageTitle}"
                         android:textColor="@color/white"
-                />
+                        android:textSize="18sp"
+                        tools:text="Hamon school" />
 
             </LinearLayout>
 
             <FrameLayout
-                    android:layout_below="@id/lytTitle"
                     android:id="@+id/lytContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@id/lytTitle"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
         </RelativeLayout>
 
         <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navHome"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_gravity="start"
                 app:headerLayout="@layout/drawer_header"
-                app:menu="@menu/main2"
-                android:layout_gravity="start"/>
+                app:menu="@menu/main2" />
 
     </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
