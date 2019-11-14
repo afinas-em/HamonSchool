@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_students"
+          android:title="Students"
+          android:icon="@drawable/ic_students"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_classrooms"
+          android:title="Classrooms"
+          android:icon="@drawable/ic_classroom"
+          app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_subjects"
+          android:title="Subjects"
+          android:icon="@drawable/ic_subjec"
+          app:showAsAction="never"/>
+</menu>
