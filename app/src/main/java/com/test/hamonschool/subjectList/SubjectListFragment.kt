@@ -1,4 +1,4 @@
-package com.test.hamonschool.utils.studentList
+package com.test.hamonschool.subjectList
 
 
 import android.os.Bundle
@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.test.hamonschool.R
-import com.test.hamonschool.databinding.FragmentStudentListBinding
+import com.test.hamonschool.databinding.FragmentSubjectListBinding
 
 /**
  * A simple [Fragment] subclass.
  */
-class StudentListFragment : Fragment() {
+class SubjectListFragment : Fragment() {
 
-    lateinit var binding : FragmentStudentListBinding
+    lateinit var binding: FragmentSubjectListBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,7 +23,8 @@ class StudentListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_student_list,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_subject_list, container, false)
 
         return binding.root
     }

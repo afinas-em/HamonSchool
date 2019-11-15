@@ -3,9 +3,9 @@ package com.test.hamonschool.utils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.test.hamonschool.R
-import com.test.hamonschool.utils.classroomList.ClassroomListFragment
-import com.test.hamonschool.utils.studentList.StudentListFragment
-import com.test.hamonschool.utils.subjectList.SubjectListFragment
+import com.test.hamonschool.classroomList.ClassroomListFragment
+import com.test.hamonschool.studentList.StudentListFragment
+import com.test.hamonschool.subjectList.SubjectListFragment
 
 class AppUtil {
 

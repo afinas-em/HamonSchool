@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
+        <variable
+                name="viewmodel"
+                type="com.test.hamonschool.studentList.StudentListViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fdff00"
             android:orientation="vertical">
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="students"/>
+                app:student_adapter="@{viewmodel.studentListAdapter}" />
 
-    </LinearLayout>
+        <include
+                layout="@layout/progress_layout"
+                android:visibility="@{viewmodel.showProgress}" />
+
+    </FrameLayout>
 </layout>

@@ -1,5 +1,10 @@
 package com.test.hamonschool.utils
 
+import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.test.hamonschool.studentList.StudentListAdapter
+
 //@BindingAdapter("app:firebaseImageUrl")
 //fun ImageView.setImageUrl(url: String) {
 //
@@ -12,3 +17,11 @@ package com.test.hamonschool.utils
 //    else
 //        setImageDrawable(ColorDrawable(Color.parseColor("#F2FAFC")))
 //}
+
+@BindingAdapter("app:student_adapter")
+fun RecyclerView.setStudentsAdapter(adapter: StudentListAdapter?) {
+    if(adapter!=null) {
+        this.adapter = adapter
+        layoutManager = LinearLayoutManager(context)
+    }
+}
