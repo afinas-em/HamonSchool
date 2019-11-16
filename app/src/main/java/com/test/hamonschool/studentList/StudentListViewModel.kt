@@ -1,24 +1,23 @@
 package com.test.hamonschool.studentList
 
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.hamonschool.models.StudentModel
 
 class StudentListViewModel : ViewModel() {
 
-    val showProgress = MutableLiveData(View.GONE)
+    val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)
     val repo = StudentsRepository()
-    val studentListAdapter : MutableLiveData<StudentListAdapter?> = MutableLiveData(null)
+    val studentListAdapter: MutableLiveData<StudentListAdapter?> = MutableLiveData(null)
 
     init {
-        showProgress.value = View.VISIBLE
+        showProgress.value = true
         repo.getStudents()
 
         repo.studentsList.observeForever {
-            showProgress.value = View.GONE
             it?.let {
-                if(it.isNotEmpty()){
+                showProgress.value = false
+                if (it.isNotEmpty()) {
                     studentListAdapter.value = StudentListAdapter(it as ArrayList<StudentModel>)
                 }
             }
@@ -26,6 +25,7 @@ class StudentListViewModel : ViewModel() {
 
         repo.apiError.observeForever {
             it?.let {
+                showProgress.value = false
 
             }
         }

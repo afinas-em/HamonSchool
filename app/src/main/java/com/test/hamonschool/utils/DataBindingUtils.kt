@@ -1,5 +1,6 @@
 package com.test.hamonschool.utils
 
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,3 +26,7 @@ fun RecyclerView.setStudentsAdapter(adapter: StudentListAdapter?) {
         layoutManager = LinearLayoutManager(context)
     }
 }
+//@BindingAdapter("app:visibility")
+//fun View.setVisibility(value: Boolean) {
+//    visibility = if (value) View.VISIBLE else View.GONE
+//}

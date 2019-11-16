@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#80ffffff">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center" />
+    <data>
+        <import type="android.view.View"/>
+        <variable
+                name="visibility"
+                type="Boolean" />
+    </data>
 
-</FrameLayout>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{visibility?View.VISIBLE:View.GONE}"
+            android:background="#80ffffff">
+
+        <ProgressBar
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center" />
+
+    </FrameLayout>
+</layout>
