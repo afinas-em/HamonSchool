@@ -10,7 +10,6 @@ import com.test.hamonschool.utils.Constants
 
 class MainViewModel : ViewModel() {
 
-    private val appUtil = AppUtil()
     private var currFragment: Constants.HomeFragments? = null
 
     var currFragmentObject: Fragment? = null
@@ -22,7 +21,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun setCurrentFragment(frg: Constants.HomeFragments) {
-        pageTitle.postValue(appUtil.getPageTitle(frg))
+        pageTitle.postValue(AppUtil.getPageTitle(frg))
         currFragment = frg
     }
 

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.test.hamonschool.R
 import com.test.hamonschool.databinding.FragmentStudentListBinding
+import com.test.hamonschool.subjectList.SubjectListViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -30,6 +31,8 @@ class StudentListFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(StudentListViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewmodel = viewModel
+
+        viewModel.updateRepository(StudentsRepository(context!!))
 
 
         return binding.root

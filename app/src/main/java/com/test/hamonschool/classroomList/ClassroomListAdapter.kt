@@ -1,20 +1,20 @@
-package com.test.hamonschool.studentList
+package com.test.hamonschool.classroomList
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.test.hamonschool.R
-import com.test.hamonschool.databinding.StudentSingleItemViewBinding
-import com.test.hamonschool.room.student.StudentEntity
+import com.test.hamonschool.databinding.ClassroomSingleItemViewBinding
+import com.test.hamonschool.room.classroom.ClassroomEntity
 
-class StudentListAdapter(var list: ArrayList<StudentEntity>, var viewModel: StudentListViewModel) :
-    RecyclerView.Adapter<StudentListAdapter.ViewHolder>() {
+class ClassroomListAdapter(var list: ArrayList<ClassroomEntity>, val viewModel: ClassroomListViewModel) :
+    RecyclerView.Adapter<ClassroomListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = DataBindingUtil.inflate<StudentSingleItemViewBinding>(
+        val v = DataBindingUtil.inflate<ClassroomSingleItemViewBinding>(
             LayoutInflater.from(parent.context),
-            R.layout.student_single_item_view,
+            R.layout.classroom_single_item_view,
             parent,
             false
         )
@@ -30,16 +30,16 @@ class StudentListAdapter(var list: ArrayList<StudentEntity>, var viewModel: Stud
         }
     }
 
-    class ViewHolder(val binding: StudentSingleItemViewBinding) :
+    class ViewHolder(val binding: ClassroomSingleItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(StudentEntity: StudentEntity) {
-            binding.studentModel = StudentEntity
+        fun bind(classroom: ClassroomEntity) {
+            binding.classroomModel = classroom
         }
 
-        fun showAlert(student: StudentEntity, viewModel: StudentListViewModel) {
+        fun showAlert(classroom: ClassroomEntity,viewModel: ClassroomListViewModel) {
             val context = itemView.context
-            viewModel.getStudentWithClass(student,context)
+            viewModel.getClassroomDetails(classroom,context)
         }
     }
 

@@ -1,4 +1,4 @@
-package com.test.hamonschool.studentList
+package com.test.hamonschool.subjectList
 
 import android.content.Context
 import android.graphics.Color
@@ -12,41 +12,39 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.test.hamonschool.R
-import com.test.hamonschool.databinding.StudentAlertLayoutBinding
+import com.test.hamonschool.databinding.SubjectAlertLayoutBinding
 import com.test.hamonschool.room.classroom.ClassroomEntity
-import com.test.hamonschool.room.student.StudentEntity
-import com.test.hamonschool.room.student.StudentWithClass
+import com.test.hamonschool.room.subject.SubjectEntity
+import com.test.hamonschool.room.subject.SubjectWithClass
 
-class StudentListViewModel : ViewModel() {
-
+class SubjectListViewModel : ViewModel() {
 
     val showProgress: MutableLiveData<Boolean> = MutableLiveData(false)
-    lateinit var repo: StudentsRepository
-    val studentListAdapter: MutableLiveData<StudentListAdapter>
+    private lateinit var repo: SubjectsRepository
+    val subjectListAdapter: MutableLiveData<SubjectListAdapter>
     var context: Context? = null
     val classrooms: ArrayList<ClassroomEntity> = ArrayList()
-    val students : ArrayList<StudentEntity>
+    val subjects: ArrayList<SubjectEntity>
 
     init {
         showProgress.value = true
-        students = ArrayList()
-        studentListAdapter = MutableLiveData(StudentListAdapter(students,this))
+        subjects = ArrayList()
+        subjectListAdapter = MutableLiveData(SubjectListAdapter(subjects, this))
     }
 
-    fun updateRepository(repository: StudentsRepository) {
+    fun updateRepository(repository: SubjectsRepository) {
         repo = repository
-        repo.studentsList.observeForever {
+        repo.subjectsList.observeForever {
             showProgress.value = false
-            students.clear()
-            students.addAll(it)
-            studentListAdapter.value!!.notifyDataSetChanged()
+            subjects.clear()
+            subjects.addAll(it)
+            subjectListAdapter.value!!.notifyDataSetChanged()
         }
-
-        repo.studentWithClass.observeForever {
+        repo.subjectWithClass.observeForever {
             if (it == null)
                 return@observeForever
 
-            showStudentDetails(it)
+            showSubjectDetails(it)
         }
 
         repo.classroomList.observeForever {
@@ -55,19 +53,24 @@ class StudentListViewModel : ViewModel() {
         }
     }
 
-    private fun showStudentDetails(studentWithClass: StudentWithClass) {
+    fun getSubjectWithClass(subject: SubjectEntity, context: Context?) {
+        this.context = context
+        repo.getClassById(subject)
+    }
+
+    private fun showSubjectDetails(subjectWithClass: SubjectWithClass) {
 
         if (context == null)
             return
 
         val builder = AlertDialog.Builder(context!!)
-        val binding = DataBindingUtil.inflate<StudentAlertLayoutBinding>(
+        val binding = DataBindingUtil.inflate<SubjectAlertLayoutBinding>(
             LayoutInflater.from(context),
-            R.layout.student_alert_layout,
+            R.layout.subject_alert_layout,
             null,
             false
         )
-        binding.student = studentWithClass
+        binding.subject = subjectWithClass
         builder.setView(binding.root)
         val dialog = builder.create()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -95,12 +98,12 @@ class StudentListViewModel : ViewModel() {
             view.setOnItemClickListener { _, _, i, _ ->
 
                 val classId = classrooms[i].id
-                if(studentWithClass.classroom_id == classId) {
-                    Toast.makeText(context,"Already assigned", Toast.LENGTH_SHORT).show()
+                if(subjectWithClass.classroom_id == classId) {
+                    Toast.makeText(context,"Already assigned",Toast.LENGTH_SHORT).show()
                     return@setOnItemClickListener
                 }
+                repo.assignClassToSubject(subjectWithClass.subject_id, classId)
                 assignDialog.dismiss()
-                repo.assignClassToStudent(studentWithClass.student_id, classrooms[i].id)
             }
 
 
@@ -109,18 +112,13 @@ class StudentListViewModel : ViewModel() {
 
         binding.btnRemove.setOnClickListener {
             dialog.dismiss()
-            repo.removeClassFrom(studentWithClass.student_id)
+            repo.removeClassFrom(subjectWithClass.subject_id)
         }
 
         binding.btnUpdate.setOnClickListener {
             binding.btnAssign.performClick()
         }
 
-    }
-
-    fun getStudentWithClass(student: StudentEntity, context: Context?) {
-        this.context = context
-        repo.getClassById(student)
     }
 
 }

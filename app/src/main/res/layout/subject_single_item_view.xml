@@ -5,8 +5,8 @@
 
     <data>
         <variable
-                name="student_model"
-                type="com.test.hamonschool.room.student.StudentEntity" />
+                name="subject_model"
+                type="com.test.hamonschool.room.subject.SubjectEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,35 +20,24 @@
                 android:id="@+id/title_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:textColor="#000"
-                android:text="@{student_model.name}"
+                android:text="@{subject_model.name}"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="name" />
 
-        <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#80808080"
-                android:text="@{student_model.email}"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/title_1"
-                tools:text="email@email.com" />
-
         <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:background="#80808080"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/title_1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

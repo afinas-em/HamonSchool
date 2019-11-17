@@ -1,23 +1,11 @@
 package com.test.hamonschool.utils
 
-import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.test.hamonschool.classroomList.ClassroomListAdapter
 import com.test.hamonschool.studentList.StudentListAdapter
-
-//@BindingAdapter("app:firebaseImageUrl")
-//fun ImageView.setImageUrl(url: String) {
-//
-//    if (!TextUtils.isEmpty(url))
-//        GlideApp.with(this)
-//            .load(FirebaseStorage.getInstance().getReference(url))
-//            .placeholder(ColorDrawable(Color.parseColor("#F2FAFC")))
-//            .centerCrop()
-//            .into(this)
-//    else
-//        setImageDrawable(ColorDrawable(Color.parseColor("#F2FAFC")))
-//}
+import com.test.hamonschool.subjectList.SubjectListAdapter
 
 @BindingAdapter("app:student_adapter")
 fun RecyclerView.setStudentsAdapter(adapter: StudentListAdapter?) {
@@ -26,7 +14,19 @@ fun RecyclerView.setStudentsAdapter(adapter: StudentListAdapter?) {
         layoutManager = LinearLayoutManager(context)
     }
 }
-//@BindingAdapter("app:visibility")
-//fun View.setVisibility(value: Boolean) {
-//    visibility = if (value) View.VISIBLE else View.GONE
-//}
+
+@BindingAdapter("app:subject_adapter")
+fun RecyclerView.setSubjectsAdapter(adapter: SubjectListAdapter?) {
+    if(adapter!=null) {
+        this.adapter = adapter
+        layoutManager = LinearLayoutManager(context)
+    }
+}
+
+@BindingAdapter("app:classroom_adapter")
+fun RecyclerView.setClassroomAdapter(adapter: ClassroomListAdapter?) {
+    if(adapter!=null) {
+        this.adapter = adapter
+        layoutManager = LinearLayoutManager(context)
+    }
+}

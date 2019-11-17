@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="classroom"
+                type="com.test.hamonschool.room.classroom.ClassroomWithDetails" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner_rounded_white"
+            android:minWidth="200dp"
+            android:minHeight="200dp"
+            android:padding="20dp">
+
+        <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{classroom.classroom_name}"
+                android:textColor="#000"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Text name" />
+
+        <TextView
+                android:id="@+id/txtLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{classroom.classroom_layout}"
+                android:textColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtName"
+                tools:text="text@gmail.com" />
+
+        <TextView
+                android:id="@+id/txtSize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text='@{"Classroom size: "+classroom.classroom_size}'
+                android:textColor="#60000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtLayout"
+                tools:text="Age: 23" />
+
+        <TextView
+                android:id="@+id/txtTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text='@{"Teacher: "+classroom.teacher}'
+                android:textColor="#60000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtSize"
+                tools:text="classroom: 23" />
+
+        <TextView
+                android:id="@+id/txtSubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text='@{"Subject: "+classroom.subject}'
+                android:textColor="#60000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTeacher"
+                tools:text="classroom: 23" />
+
+        <TextView
+                android:id="@+id/txtStudents"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text='@{"Students: "+classroom.students}'
+                android:textColor="#60000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtSubject"
+                tools:text="classroom: 23" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

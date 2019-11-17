@@ -1,8 +1,9 @@
 package com.test.hamonschool.utils
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.test.hamonschool.models.StudentModel
+import com.test.hamonschool.models.ClassroomResult
 import com.test.hamonschool.models.StudentsResult
+import com.test.hamonschool.models.SubjectsResult
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -21,7 +22,7 @@ class NetworkTask {
 
     init {
 
-        var networkInterceptor = Interceptor {
+        val networkInterceptor = Interceptor {
 
             val original = it.request()
             val originalHttpUrl = original.url()
@@ -64,6 +65,12 @@ class NetworkTask {
 
         @GET("students")
         fun getStudentsList(): Call<StudentsResult>
+
+        @GET("subjects")
+        fun getSubjectsList(): Call<SubjectsResult>
+
+        @GET("classrooms")
+        fun getClassrooms(): Call<ClassroomResult>
     }
 
 }

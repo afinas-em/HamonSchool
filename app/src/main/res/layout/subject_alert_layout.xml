@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="subject"
+                type="com.test.hamonschool.room.subject.SubjectWithClass" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corner_rounded_white"
+            android:minWidth="200dp"
+            android:minHeight="200dp"
+            android:padding="20dp">
+
+        <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{subject.subject_name}"
+                android:textColor="#000"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Text name" />
+
+        <TextView
+                android:id="@+id/txtTeacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@{subject.subject_teacher}"
+                android:textColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtName"
+                tools:text="text@gmail.com" />
+
+        <TextView
+                android:id="@+id/txtCredits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text='@{"Creadits: "+subject.subject_credits}'
+                android:textColor="#60000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTeacher"
+                tools:text="Age: 23" />
+
+        <TextView
+                android:id="@+id/txtClassroom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text='@{"Classroom: "+subject.classroom_name}'
+                android:textColor="#60000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtCredits"
+                tools:text="classroom: 23" />
+
+
+        <Button
+                android:id="@+id/btnAssign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Assign"
+                android:visibility="@{subject.classroom_id == null?View.VISIBLE:View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtClassroom" />
+
+        <Button
+                android:id="@+id/btnUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Update"
+                android:visibility="@{subject.classroom_id == null?View.GONE:View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnRemove"
+                app:layout_constraintTop_toBottomOf="@id/txtClassroom" />
+
+        <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Remove"
+                android:visibility="@{subject.classroom_id == null?View.GONE:View.VISIBLE}"
+                android:layout_marginStart="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnUpdate"
+                app:layout_constraintTop_toBottomOf="@id/txtClassroom" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

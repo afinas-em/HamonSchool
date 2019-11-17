@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             return
 
         viewmodel.setCurrentFragment(frg)
-        val fragment = AppUtil().gotoFragment(supportFragmentManager, frg)
+        val fragment = AppUtil.gotoFragment(supportFragmentManager, frg)
         viewmodel.currFragmentObject = fragment
     }
 }
